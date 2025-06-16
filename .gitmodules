@@ -1,0 +1,6 @@
+[submodule "libs/jcsdks"]
+	path = libs/jcsdks
+	url = git@github.com:ibaibing/javacard_sdks.git
+[submodule "libs/gpapis"]
+	path = libs/gpapis
+	url = git@github.com:ibaibing/globalplatform-apis.git
