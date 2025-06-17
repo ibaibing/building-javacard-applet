@@ -26,3 +26,5 @@ replay_pid*
 *bin/*.cap
 **/ant-javacard.jar
 bin/
+**/PackageInfo.java
+*.bak

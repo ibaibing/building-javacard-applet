@@ -1,34 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="building-javacard-applet" default="convert" basedir=".">
-    <import file="build.properties.xml"/>
+    <import file="ant/build.properties.xml"/>
+	<target name="convert_ant_jc">
+	    <subant target="compile">
+            <fileset dir=".">
+			    <!-- Import all build targets for ant.javacard -->
+				<include name="ant/build.ant.javacard.xml"/>
+			</fileset>
+		</subant>
+	</target>
     <target name="convert">
         <subant target="convert">
             <fileset dir=".">
 			    <!-- Import all build targets for each JCSDK version -->
 				<!--include name="build.jc21.xml"/-->
-				<include name="build.jc211.xml"/>
-				<include name="build.jc212.xml"/>
-				<!--include name="build.jc220.xml"/-->
-				<include name="build.jc221.xml"/>
-				<include name="build.jc222.xml"/>
-				<include name="build.jc301.xml"/>
-				<include name="build.jc302.xml"/>
-				<include name="build.jc303.xml"/>
-				<include name="build.jc304.xml"/>
-				<include name="build.jc305u1.xml"/>
-				<include name="build.jc305u2.xml"/>
-				<include name="build.jc305u3.xml"/>
-				<include name="build.jc305u4.xml"/>
-				<include name="build.jc310b43.xml"/>
-				<include name="build.jc310r20210706.xml"/>
-				<include name="build.jc320v240.xml"/>
-				<include name="build.jc320v241.xml"/>
-				<include name="build.jc320v250.xml"/>
+				<include name="ant/build.jc211.xml"/>
+				<include name="ant/build.jc212.xml"/>
+				<!--include name="ant/build.jc220.xml"/-->
+				<include name="ant/build.jc221.xml"/>
+				<include name="ant/build.jc320v250.xml"/>
+				<include name="ant/build.jc222.xml"/>
+				<include name="ant/build.jc301.xml"/>
+				<include name="ant/build.jc302.xml"/>
+				<include name="ant/build.jc303.xml"/>
+				<include name="ant/build.jc304.xml"/>
+				<include name="ant/build.jc305u1.xml"/>
+				<include name="ant/build.jc305u2.xml"/>
+				<include name="ant/build.jc305u3.xml"/>
+				<include name="ant/build.jc305u4.xml"/>
+				<include name="ant/build.jc310b43.xml"/>
+				<include name="ant/build.jc310r20210706.xml"/>
+				<include name="ant/build.jc320v240.xml"/>
+				<include name="ant/build.jc320v241.xml"/>
             </fileset>
         </subant>
     </target>
 	<!-- Target: Clean up build artifacts -->
 	<target name="clean" description="Delete build and output directories to ensure a clean build environment">
-		<delete dir="${output.dir}"/>
+		<delete dir="bin"/>
 	</target>
 </project>

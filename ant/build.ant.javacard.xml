@@ -5,14 +5,14 @@
 	<import file="build.properties.xml"/>
 	<import file="build.dateinfo.xml"/>
 	
-	<property name="jc.sdk" value="${jc222.sdk}"/>
+	<property name="jc.sdk" value="${jc302.sdk}"/>
 	<property name="output.fmt" value="${package.name}_%a_%h_v${version}_${date.strs}_JC%j_%J.cap"/>
 	
 	<!-- Target: Compile the project -->
 	<target name="compile" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
 	    <tstamp/>
         <!--ant dir="../libs"/-->
-		<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="./libs/ant-javacard.jar"/>
+		<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="${ant.javacard}"/>
 		<!-- Create the output directory if it doesn't exist -->
 		<mkdir dir="${output.dir}"/>
 		<javacard jckit="${jc.sdk}">

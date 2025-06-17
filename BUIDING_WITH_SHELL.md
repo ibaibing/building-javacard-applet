@@ -11,7 +11,7 @@
 
 4. Add %JAVA_HOME%\bin and %JAVA_HOME%\jre\bin to PATH
 
-   Note: Different JCSDK need different JDK, please see the  table in [ss](ss)
+   Note: Different JCSDK need different JDK, please see the table in [javacard_sdks](https://github.com/ibaibing/javacard_sdks/blob/master/README.FORK.md)
 
 ## Install JavaCard SDK
 
