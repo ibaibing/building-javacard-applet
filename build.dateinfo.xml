@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build-dateinfo" default="compile" basedir=".">
+	
+	<import file="build.properties.xml"/>
+	
+	<!-- Define timestamp property -->
+	<tstamp>
+		<format property="current.date" pattern="YY.MM.dd.HH.mm.ss" locale="en,US"/>
+	</tstamp>
+    
+	<!-- Convert string properties to char arrays for the platform that doesn't support String -->
+    <script language="javascript">
+        project.setProperty("version.chars", project.getProperty("version").split('.').join(", (byte)0x"));
+        project.setProperty("date.chars", project.getProperty("current.date").split('.').join(", (byte)0x"));
+        project.setProperty("date.strs", project.getProperty("current.date").split('.').join(""));
+    </script>
+
+    <!-- Target: Generate a Java file with version information using char arrays -->
+    <target name="generate-info-file" description="Generate PackageInfo.java with version and date information as char arrays">
+        <!-- Create the build directory if it doesn't exist -->
+        <mkdir dir="${output.dir}"/>
+        
+        <!-- Directly write the content to PackageInfo.java -->
+        <echo file="${src.dir}/${package.name}/PackageInfo.java">
+		
+package ${package.name};
+
+/**
+ * Package Name: ${package.name}
+ *
+ * @version ${version}
+ * @date ${current.date}
+ */
+public final class PackageInfo {
+    public static final byte[] VERSION = new byte[]{(byte)0x${version.chars},//${version}
+	                                                (byte)0x${date.chars}};  //${current.date}
+}
+        </echo>
+	</target>
+</project>

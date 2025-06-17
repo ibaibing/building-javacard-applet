@@ -1,81 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SCP01Project" default="compile" basedir=".">
-	<description>Builds, tests, and runs the project .</description>
-	
-	<target name="download-dependencies" unless="skip.download">
-		<available file="./libs/ant-javacard.jar" property="jar.exists"/>
-
-		<!-- if>
-			<not><isset property="jar.exists"/></not>
-			<then>
-				<mkdir dir="../libs"/>
-				<get src="https://github.com/martinpaljak/ant-javacard/releases/latest/download/ant-javacard.jar"
-					 dest="../libs/ant-javacard.jar"/>
-			</then>
-		</if-->
-	</target>
-
-	<!-- Set global properties -->
-	<property name="version" value="1.0"/>
-	<property name="package.name" value="HelloWorld"/>	
-	<property name="package.aid" value="D0:48:65:6c:6c:6F:77:6F:72:6c:64"/><!--D0.HelloWorld-->
-	<property name="applet.name" value="HelloWorld"/>	
-	<property name="applet.aid" value="D0:48:65:6c:6c:6F:77:6F:72:6c:64:00"/><!--D0.HelloWorld.00-->
-	
-	<property name="src.dir" location="src"/>
-	<property name="output.dir" location="bin"/>
-	
-	<!-- Define timestamp property -->
-	<tstamp>
-		<format property="current.date" pattern="YY.MM.dd.HH.mm.ss" locale="en,US"/>
-	</tstamp>
-    
-	<!-- Convert string properties to char arrays for the platform that doesn't support String -->
-    <script language="javascript">
-        project.setProperty("version.chars", project.getProperty("version").split('.').join(", (byte)0x"));
-        project.setProperty("date.chars", project.getProperty("current.date").split('.').join(", (byte)0x"));
-        project.setProperty("date.strs", project.getProperty("current.date").split('.').join(""));
-    </script>
-
-    <!-- Target: Generate a Java file with version information using char arrays -->
-    <target name="generate-info-file" description="Generate PackageInfo.java with version and date information as char arrays">
-        <!-- Create the build directory if it doesn't exist -->
-        <mkdir dir="${output.dir}"/>
-        
-        <!-- Directly write the content to PackageInfo.java -->
-        <echo file="${src.dir}/${package.name}/PackageInfo.java">
-package SCP01Package;
-
-/**
- * Package Name: SCP01Package
- *
- * @version ${version}
- * @date ${current.date}
- */
-public final class PackageInfo {
-    public static final byte[] VERSION = new byte[]{(byte)0x${version.chars},//${version}
-	                                                (byte)0x${date.chars}};  //${current.date}
-}
-
-        </echo>
-	</target>
-	
-	<property name="output.fmt" value="SCP01_%a_%h_v${version}_${date.strs}_JC%j_%J.cap"/>
-	
-	<!-- Target: Compile the project -->
-	<target name="compile" depends="download-dependencies,generate-info-file" description="Compile the entire project after generating PackageInfo.java">
-	    <tstamp/>
-        <!--ant dir="../libs"/-->
-		<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="./libs/ant-javacard.jar"/>
-		<!-- Create the output directory if it doesn't exist -->
-		<mkdir dir="${output.dir}"/>
-		<javacard jckit="./libs/jcsdks/jc304_kit">
-			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
-				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
-			</cap>
-		</javacard>
-	</target>
-	
+<project name="building-javacard-applet" default="convert" basedir=".">
+    <import file="build.properties.xml"/>
+    <target name="convert">
+        <subant target="convert">
+            <fileset dir=".">
+			    <!-- Import all build targets for each JCSDK version -->
+				<!--include name="build.jc21.xml"/-->
+				<include name="build.jc211.xml"/>
+				<include name="build.jc212.xml"/>
+				<!--include name="build.jc220.xml"/-->
+				<include name="build.jc221.xml"/>
+				<include name="build.jc222.xml"/>
+				<include name="build.jc301.xml"/>
+				<include name="build.jc302.xml"/>
+				<include name="build.jc303.xml"/>
+				<include name="build.jc304.xml"/>
+				<include name="build.jc305u1.xml"/>
+				<include name="build.jc305u2.xml"/>
+				<include name="build.jc305u3.xml"/>
+				<include name="build.jc305u4.xml"/>
+				<include name="build.jc310b43.xml"/>
+				<include name="build.jc310r20210706.xml"/>
+				<include name="build.jc320v240.xml"/>
+				<include name="build.jc320v241.xml"/>
+				<include name="build.jc320v250.xml"/>
+            </fileset>
+        </subant>
+    </target>
 	<!-- Target: Clean up build artifacts -->
 	<target name="clean" description="Delete build and output directories to ensure a clean build environment">
 		<delete dir="${output.dir}"/>

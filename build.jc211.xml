@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build-jc211" default="convert" basedir=".">
+    
+	<import file="build.properties.xml"/>
+	<import file="build.dateinfo.xml"/>
+		
+	<property name="jdk.java"  value="${jdk8.java}"/>
+	<property name="jdk.javac" value="${jdk8.javac}"/>
+	
+	<!-- Compile target using exec form -->
+    <target name="compile" depends="generate-info-file">
+	    <echo message="compile ${jc211.sdk}..." />
+		
+        <!-- Create output directory -->
+        <mkdir dir="${output.dir}/jc211"/>
+
+        <!-- Compile JavaCard source files -->
+        <exec executable="${jdk.javac}" failonerror="true">
+            <arg value="-source"/><arg value="1.2"/>
+            <arg value="-target"/><arg value="1.1"/>
+			<arg value="-g"/>
+            <arg value="-d"/><arg value="${output.dir}/jc211"/>
+            <arg value="-classpath"/>
+            <arg value="${jc211.sdk}/bin/api.jar;${output.dir}/jc211;${gpapi.jar}"/>
+            <arg value="${src.dir}/${package.name}/*.java"/>
+        </exec>
+    </target>
+	
+	<!-- Convert target using exec form -->
+    <target name="convert" depends="compile">
+	    <echo message="convert ${jc211.sdk}..." />
+		
+	    <!-- Run JavaCard converter using specific JDK -->
+        <exec executable="${jdk.java}" failonerror="true">
+
+			<!-- Set JVM property jc.home -->
+			<arg value="-Djc.home=${jc211.sdk}"/>
+			
+			<!-- Set classpath to include JavaCard converter tool -->
+			<arg value="-cp"/>
+			<arg value="${jc211.sdk}/bin/converter.jar"/>
+			
+			<!-- Main class to run -->
+			<arg value="com.sun.javacard.converter.Converter"/>
+
+			<!-- Specify export path -->
+			<arg value="-exportpath"/>
+			<arg value="${output.dir}/jc211;${jc211.sdk}/api_export_files;./libs/gpapis/CORE/1.0/exports;./export"/>
+
+
+			<!-- Output formats -->
+            <arg value="-out"/>
+            <arg value="JCA"/>
+            <arg value="CAP"/>
+            <arg value="EXP"/>
+			
+			<!-- Compiled class files directory -->
+            <arg value="-classdir"/>
+            <arg value="${output.dir}/jc211"/>
+
+			<!-- Output directory for generated files -->
+            <arg value="-d"/>
+            <arg value="${output.dir}/jc211"/>
+			
+			<!-- support int -->
+            <arg value="-i"/>
+			
+			<!-- Applet information -->
+            <arg value="-applet"/>
+            <arg value="${package.aid.ant}"/>
+            <arg value="${package.name}"/>
+            <arg value="${applet.name}"/>
+            <arg value="${applet.aid.ant}"/>
+
+			<!-- Applet version -->
+            <arg value="${version}"/>
+        </exec>
+    </target>
+	
+	<!-- Target: Clean up build artifacts -->
+	<target name="clean" description="Delete build and output directories to ensure a clean build environment">
+		<delete dir="${output.dir}"/>
+	</target>
+</project>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="building-ant-javacard" default="compile" basedir=".">
+	<description>Builds, tests, and runs the project .</description>
+	
+	<import file="build.properties.xml"/>
+	<import file="build.dateinfo.xml"/>
+	
+	<property name="jc.sdk" value="${jc222.sdk}"/>
+	<property name="output.fmt" value="${package.name}_%a_%h_v${version}_${date.strs}_JC%j_%J.cap"/>
+	
+	<!-- Target: Compile the project -->
+	<target name="compile" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+        <!--ant dir="../libs"/-->
+		<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="./libs/ant-javacard.jar"/>
+		<!-- Create the output directory if it doesn't exist -->
+		<mkdir dir="${output.dir}"/>
+		<javacard jckit="${jc.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<!-- Target: Clean up build artifacts -->
+	<target name="clean" description="Delete build and output directories to ensure a clean build environment">
+		<delete dir="${output.dir}"/>
+	</target>
+
+</project>

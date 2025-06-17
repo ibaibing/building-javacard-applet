@@ -1,0 +1,66 @@
+<!-- build.properties.xml -->
+<project name="build-properties" default="noop" basedir=".">
+
+    <!-- Dummy target to avoid "no default target" warning -->
+    <target name="noop"/>
+
+    <!-- Global properties -->
+    <property name="version" value="1.0"/>
+    <property name="package.name" value="HelloWorld"/>
+    <property name="package.aid" value="D0:48:65:6c:6c:6F:77:6F:72:6c:64"/>
+    <property name="package.aid.ant" value="0xD0:0x48:0x65:0x6c:0x6c:0x6F:0x77:0x6F:0x72:0x6c:0x64"/>
+    <property name="applet.name" value="HelloWorld"/>
+    <property name="applet.aid" value="D0:48:65:6c:6c:6F:77:6F:72:6c:64:00"/>
+    <property name="applet.aid.ant" value="0xD0:0x48:0x65:0x6c:0x6c:0x6F:0x77:0x6F:0x72:0x6c:0x64:0x00"/>
+
+    <!-- Directory settings -->
+    <property name="src.dir" location="src"/>
+    <property name="output.dir" location="bin"/>
+
+    <!-- JDK -->
+	<property name="jdk3" value="C:/JAVA_HOME/Java/jdk1.3.1_28/bin"/>
+	<property name="jdk4" value="C:/JAVA_HOME/Java/j2sdk1.4.2_19/bin"/>
+	<property name="jdk5" value="C:/JAVA_HOME/Java/jdk1.5.0_22/bin"/>
+	<property name="jdk7" value="C:/JAVA_HOME/Java/jdk1.7.0_80/bin"/>
+	<property name="jdk8" value="C:/JAVA_HOME/Java/jdk-1.8/bin"/>
+	<property name="jdk11" value="D:/SOFTWARE/OpenJDK/jdk-11.0.0.2/bin"/>
+	
+    <property name="jdk11.javac" value="${jdk11}/javac.exe"/>
+	<property name="jdk11.java" value="${jdk11}/java.exe"/>
+	<property name="jdk8.javac" value="${jdk8}/javac.exe"/>
+	<property name="jdk8.java" value="${jdk8}/java.exe"/>
+	<property name="jdk7.javac" value="${jdk7}/javac.exe"/>
+	<property name="jdk7.java" value="${jdk7}/java.exe"/>
+	<property name="jdk3.javac" value="${jdk3}/javac.exe"/>
+	<property name="jdk3.java" value="${jdk3}/java.exe"/>
+    <property name="jdk4.javac" value="${jdk4}/javac.exe"/>
+	<property name="jdk4.java" value="${jdk4}/java.exe"/>
+	<property name="jdk5.javac" value="${jdk5}/javac.exe"/>
+	<property name="jdk5.java" value="${jdk5}/java.exe"/>
+	
+	<!-- JCSDK paths -->
+    <property name="jc21.sdk" value="./libs/jcsdks/jc21_kit"/>
+    <property name="jc211.sdk" value="./libs/jcsdks/jc211_kit"/>
+    <property name="jc212.sdk" value="./libs/jcsdks/jc212_kit"/>
+    <property name="jc220.sdk" value="./libs/jcsdks/jc220_kit"/>
+    <property name="jc221.sdk" value="./libs/jcsdks/jc221_kit"/>
+    <property name="jc222.sdk" value="./libs/jcsdks/jc222_kit"/>
+    <property name="jc301.sdk" value="./libs/jcsdks/jc301_kit_ClassicEdition"/>
+    <property name="jc302.sdk" value="./libs/jcsdks/jc302_kit_ClassicEdition"/>
+    <property name="jc303.sdk" value="./libs/jcsdks/jc303_kit"/>
+    <property name="jc304.sdk" value="./libs/jcsdks/jc304_kit"/>
+    <property name="jc305u1.sdk" value="./libs/jcsdks/jc305u1_kit"/>
+    <property name="jc305u2.sdk" value="./libs/jcsdks/jc305u2_kit"/>
+    <property name="jc305u3.sdk" value="./libs/jcsdks/jc305u3_kit"/>
+    <property name="jc305u4.sdk" value="./libs/jcsdks/jc305u4_kit"/>
+    <property name="jc310b43.sdk" value="./libs/jcsdks/jc310b43_kit"/>
+    <property name="jc310r20210706.sdk" value="./libs/jcsdks/jc310r20210706_kit"/>
+    <property name="jc320v240.sdk" value="./libs/jcsdks/jc320v24.0_kit"/>
+    <property name="jc320v241.sdk" value="./libs/jcsdks/jc320v24.1_kit"/>
+    <property name="jc320v250.sdk" value="./libs/jcsdks/jc320v25.0_kit"/>
+
+    <!-- GP API -->
+    <property name="gpapi.jar" value="./libs/gpapis/CORE/1.0/gpapi-globalplatform.jar"/>
+
+</project>
+
