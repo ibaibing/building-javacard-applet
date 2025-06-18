@@ -1,6 +1,7 @@
 # Building JavaCard Applet
 >[!Note]
 >This guide only tested on Windows.
+>But it is easy to adapt to other platforms, just need to configure jdk variables, shell scripts
 
 You can build JavaCard Applets as follows, whichever you choose, you should be prepared for the requirements in this document.
 
