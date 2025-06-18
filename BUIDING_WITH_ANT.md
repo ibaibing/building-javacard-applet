@@ -1,6 +1,7 @@
 # Building JavaCard Applet with Ant
 
->![Note] This guide only tested on Windows.
+>[!Note]
+>This guide only tested on Windows.
 
 ## Requirements
 
