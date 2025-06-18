@@ -1,6 +1,7 @@
 # Building JavaCard Applet with Ant-JavaCard
 
->![Note] This guide only tested on Windows.
+>[!Note]
+>This guide only tested on Windows.
 
 ## Requirements
 
@@ -103,5 +104,5 @@ cd your_project
 ant convert_ant_jc
 ```
 
->![NOTE]
+>[!NOTE]
 >ant-javacard doesn't support jc301, throw **error: invalid flag -useproxyclass**, because this converter version doesn't support the option.
