@@ -1,5 +1,6 @@
 # Building JavaCard Applet
->[!Note]This guide only tested on Windows.
+>[!Note]
+>This guide only tested on Windows.
 
 You can build JavaCard Applets as follows, whichever you choose, you should be prepared for the requirements in this document.
 
@@ -21,7 +22,8 @@ You can build JavaCard Applets as follows, whichever you choose, you should be p
 
 4. Add %JAVA_HOME%\bin and %JAVA_HOME%\jre\bin to PATH
 
->[!Note]Different JCSDK need different JDK, please see the table in [javacard_sdks](https://github.com/ibaibing/javacard_sdks/blob/master/README.FORK.md)
+>[!Note]
+>Different JCSDK need different JDK, please see the table in [javacard_sdks](https://github.com/ibaibing/javacard_sdks/blob/master/README.FORK.md)
 >In fact, as long as jdk8 and jdk11 are sufficient for our requirements to build your applet with all jcsdk.
 
 ### Install JavaCard SDK
