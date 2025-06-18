@@ -1,9 +1,7 @@
 # Building JavaCard Applet
->![Note] 
->
->This guide only tested on Windows.
+>![Note]This guide only tested on Windows.
 
-You can build JavaCard Applets as follows, but you should be prepared for the requirements in this document.
+You can build JavaCard Applets as follows, whichever you choose, you should be prepared for the requirements in this document.
 
 | Name         | Description                                               |
 | ------------ | --------------------------------------------------------- |
@@ -23,9 +21,7 @@ You can build JavaCard Applets as follows, but you should be prepared for the re
 
 4. Add %JAVA_HOME%\bin and %JAVA_HOME%\jre\bin to PATH
 
->![Note]
->
->Different JCSDK need different JDK, please see the table in [javacard_sdks](https://github.com/ibaibing/javacard_sdks/blob/master/README.FORK.md)
+>![Note]Different JCSDK need different JDK, please see the table in [javacard_sdks](https://github.com/ibaibing/javacard_sdks/blob/master/README.FORK.md)
 >In fact, as long as jdk8 and jdk11 are sufficient for our requirements to build your applet with all jcsdk.
 
 ### Install JavaCard SDK
@@ -54,3 +50,8 @@ git submodule add git@github.com:ibaibing/globalplatform-apis.git libs/gpapis
 ### Install Custom API
 
 1. If you have your own API, copy the folder to **your_project/libs/custom/** directory.
+
+>![Note]
+>- gpapi is not used in this example.
+>- Custom apis are not yet available.
+>- You need to be careful whether to verify the bytecode when using converter.
