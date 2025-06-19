@@ -1,6 +1,7 @@
 # Building JavaCard Applet with Shell
 
->![Note] This guide only tested on Windows.
+>[!Note]
+>This guide only tested on Windows.
 
 ## Requirements
 Please see [README](README.md) for details.
