@@ -37,7 +37,7 @@ You can build JavaCard Applets as follows, but you should be prepared for the re
 cd your_project
 git submodule add https://github.com/ibaibing/javacard_sdks.git libs/jcsdks
 or
-git submodule add git@github.com:ibaibing/globalplatform-apis.git libs/jcsdks
+git submodule add git@github.com:ibaibing/javacard_sdks.git libs/jcsdks
 
 ```
 ### Install GlobalPlatform API
