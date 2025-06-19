@@ -1,0 +1,22 @@
+<!-- build-compile.xml -->
+<project name="build-compile" default="compile" basedir=".">
+    <!-- Compile target using exec form -->
+    <target name="compile" depends="generate-info-file">
+	    <echo message="compile ${jcsdk}..." />
+		
+        <!-- Create output directory -->
+        <mkdir dir="${output.dir}/${jcsdk.name}"/>
+
+        <!-- Compile JavaCard source files -->
+        <exec executable="${jdk.javac}" failonerror="true">
+            <arg value="-source"/><arg value="${jdk.source}"/>
+            <arg value="-target"/><arg value="${jdk.target}"/>
+            <arg value="-d"/><arg value="${output.dir}/${jcsdk.name}"/>
+			<arg value="-g"/>
+            <arg value="-classpath"/>
+            <arg value="${jcsdk.api};${output.dir}/${jcsdk.name};${gpapi.jar}"/>
+            <arg value="${src.dir}/${package.dir}/*.java"/>
+        </exec>
+    </target>
+	
+</project>

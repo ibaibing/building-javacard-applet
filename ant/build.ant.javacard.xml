@@ -1,26 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="building-ant-javacard" default="compile" basedir=".">
+<project name="building-javacard-applet" default="convertall" basedir=".">
 	<description>Builds, tests, and runs the project .</description>
 	
 	<import file="build.properties.xml"/>
 	<import file="build.dateinfo.xml"/>
 	
-	<property name="jc.sdk" value="${jc302.sdk}"/>
-	<property name="output.fmt" value="${package.name}_%a_%h_v${version}_${date.strs}_JC%j_%J.cap"/>
+	<property name="output.fmt" value="${applet.name}_%a_%h_v${version}_${date.strs}_JC%j_%J.cap"/>
+	<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="${ant.javacard}"/>
 	
+	<mkdir dir="${output.dir}"/>
 	<!-- Target: Compile the project -->
-	<target name="compile" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	<target name="compile_jc304" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
 	    <tstamp/>
-        <!--ant dir="../libs"/-->
-		<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="${ant.javacard}"/>
-		<!-- Create the output directory if it doesn't exist -->
-		<mkdir dir="${output.dir}"/>
-		<javacard jckit="${jc.sdk}">
+		<javacard jckit="${jc304.sdk}">
 			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
 				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
 			</cap>
 		</javacard>
 	</target>
+
+	<target name="compile_jc305u1" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc305u1.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc305u2" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc305u2.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc305u3" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc305u3.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc305u4" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc305u4.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc310b43" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc310b43.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc310r20210706" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc310r20210706.sdk}">
+			<cap targetsdk="3.0.4" aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc320v240" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc320v240.sdk}">
+			<cap targetsdk="3.0.4" aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc320v241" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc320v241.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="compile_jc320v250" depends="generate-info-file" description="Compile the entire project after generating PackageInfo.java">
+	    <tstamp/>
+		<javacard jckit="${jc320v250.sdk}">
+			<cap aid="${package.aid}" version="${version}" sources="${src.dir}" ints="true" strip="true" debug="false" verify="true" output="${output.dir}/${output.fmt}">
+				<applet class="${package.name}.${applet.name}" aid="${applet.aid}"/>
+			</cap>
+		</javacard>
+	</target>
+	
+	<target name="convertall">
+        <echo message="Starting all targets..." />
+		<antcall target="compile_jc304" />
+		<!--antcall target="compile_jc305u1" /-->
+		<!--antcall target="compile_jc305u2" /-->
+		<antcall target="compile_jc305u3" />
+		<antcall target="compile_jc305u4" />
+		<!--antcall target="compile_jc310b43" /-->
+		<antcall target="compile_jc310r20210706" />
+        <antcall target="compile_jc320v240" />
+        <antcall target="compile_jc320v241" />
+        <antcall target="compile_jc320v250" />
+    </target>
 	
 	<!-- Target: Clean up build artifacts -->
 	<target name="clean" description="Delete build and output directories to ensure a clean build environment">

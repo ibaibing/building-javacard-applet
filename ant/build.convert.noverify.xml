@@ -1,0 +1,59 @@
+<!-- build-convert.xml -->
+<project name="build-convert" default="convert" basedir=".">
+
+	<!-- Convert target using exec form -->
+    <target name="convert" depends="compile">
+	    <echo message="convert ${jcsdk}..." />
+		
+	    <!-- Run JavaCard converter using specific JDK -->
+        <exec executable="${jdk.java}" failonerror="true">
+
+			<!-- Set JVM property jc.home -->
+			<arg value="-Djc.home=${jcsdk}"/>
+			
+			<!-- Set classpath to include JavaCard converter tool -->
+			<arg value="-cp"/>
+			<arg value="${convert.jar}"/>
+			
+			<!-- Main class to run -->
+			<arg value="${convert.main}"/>
+
+			<!-- Specify export path -->
+			<arg value="-exportpath"/>
+			<arg value="${convert.epath}"/>
+
+
+			<!-- Output formats -->
+            <arg value="-out"/>
+            <arg value="JCA"/>
+            <arg value="CAP"/>
+            <arg value="EXP"/>
+			
+			<!-- Compiled class files directory -->
+            <arg value="-classdir"/>
+            <arg value="${output.dir}/${jcsdk.name}"/>
+
+			<!-- Output directory for generated files -->
+            <arg value="-d"/>
+            <arg value="${output.dir}/${jcsdk.name}"/>
+			
+			<!-- support int -->
+            <arg value="-i"/>
+			
+			<!-- Applet information -->
+            <arg value="-applet"/>
+            <arg value="${applet.aid.ant}"/>
+            <arg value="${applet.name}"/>
+            <arg value="${package.name}"/>
+            <arg value="${package.aid.ant}"/>
+
+			<!-- Applet version -->
+            <arg value="${version}"/>
+			
+            <!--Notice this option-->
+			<arg value="-noverify"/>
+        </exec>
+
+		<move file="${output.dir}/${jcsdk.name}/${package.dir}/javacard/${applet.name}.cap" tofile="${output.dir}/${applet.name}_${output.fmt}_${jcsdk.name}.cap" failonerror="false" />
+    </target>
+</project>

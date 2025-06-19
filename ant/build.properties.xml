@@ -13,14 +13,21 @@
     <property name="applet.name" value="HelloWorld"/>
     <property name="applet.aid" value="D0:48:65:6c:6c:6F:77:6F:72:6c:64:00"/>
     <property name="applet.aid.ant" value="0xD0:0x48:0x65:0x6c:0x6c:0x6F:0x77:0x6F:0x72:0x6c:0x64:0x00"/>
+	
 
     <!-- Directory settings -->
     <property name="src.dir" location="../src"/>
     <property name="output.dir" location="../bin"/>
 
+    <script language="javascript">
+        project.setProperty("package.dir", project.getProperty("package.name").split('.').join("/"));
+		project.setProperty("package.aid.str", project.getProperty("package.aid").split(':').join(""));
+    </script>
+	
+	
     <!-- JDK -->
-	<property name="jdk8" value="F:/SOFTWARE/OpenJDK/java-se-8u44-ri/bin"/>
-	<property name="jdk11" value="F:/SOFTWARE/OpenJDK/jdk-11.0.0.2/bin"/>
+	<property name="jdk8" value="D:/SOFTWARE/OpenJDK/java-se-8u44-ri/bin"/>
+	<property name="jdk11" value="D:/SOFTWARE/OpenJDK/jdk-11.0.0.2/bin"/>
 	
     <property name="jdk11.javac" value="${jdk11}/javac.exe"/>
 	<property name="jdk11.java" value="${jdk11}/java.exe"/>

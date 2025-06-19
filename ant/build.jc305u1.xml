@@ -6,76 +6,27 @@
 	
 	<property name="jdk.java"  value="${jdk11.java}"/>
 	<property name="jdk.javac" value="${jdk11.javac}"/>
+	<property name="jdk.source" value="1.7"/>
+	<property name="jdk.target" value="1.7"/>
+	<property name="jcsdk" value="${jc305u1.sdk}"/>
+	<property name="jcsdk.api" value="${jcsdk}/lib/api_classic.jar"/>
+	<property name="output.fmt.ant" value="${package.aid.str}_v${version}_${date.strs}"/>
+	<property name="convert.jar" value="${jcsdk}/lib/tools.jar"/>
+	<property name="convert.noverify" value="false"/>
+	<property name="convert.main" value="com.sun.javacard.converter.Main"/>
+	<property name="convert.epath" value="${jcsdk}/api_export_files;${output.dir}/${jcsdk.name};./libs/gpapis/CORE/1.0/exports;./export"/>
+	
+	<script language="javascript">
+		project.setProperty("output.fmt", project.getProperty("output.fmt.ant").toUpperCase());
+		project.setProperty("jcsdk.name", project.getProperty("jcsdk").replace("../libs/jcsdks/", "").replace("_kit", ""));
+	</script>
 	
 	<!-- Compile target using exec form -->
-    <target name="compile" depends="generate-info-file">
-	    <echo message="compile ${jc305u1.sdk}..." />
-		
-        <!-- Create output directory -->
-        <mkdir dir="${output.dir}/jc305u1"/>
-
-        <!-- Compile JavaCard source files -->
-        <exec executable="${jdk.javac}" failonerror="true">
-            <arg value="-source"/><arg value="1.7"/>
-            <arg value="-target"/><arg value="1.7"/>
-            <arg value="-d"/><arg value="${output.dir}/jc305u1"/>
-            <arg value="-classpath"/>
-            <arg value="${jc305u1.sdk}/lib/api_classic.jar;${output.dir}/jc305u1;${gpapi.jar}"/>
-            <arg value="${src.dir}/${package.name}/*.java"/>
-        </exec>
-    </target>
+	<import file="build.compile.xml"/>
 	
 	<!-- Convert target using exec form -->
-    <target name="convert" depends="compile">
-	    <echo message="convert ${jc305u1.sdk}..." />
+	<import file="build.convert.xml"/>
 		
-	    <!-- Run JavaCard converter using specific JDK -->
-        <exec executable="${jdk.java}" failonerror="true">
-
-			<!-- Set JVM property jc.home -->
-			<arg value="-Djc.home=${jc305u1.sdk}"/>
-			
-			<!-- Set classpath to include JavaCard converter tool -->
-			<arg value="-cp"/>
-			<arg value="${jc305u1.sdk}/lib/tools.jar"/>
-			
-			<!-- Main class to run -->
-			<arg value="com.sun.javacard.converter.Main"/>
-
-			<!-- Specify export path -->
-			<arg value="-exportpath"/>
-			<arg value="${output.dir}/jc305u1;${jc305u1.sdk}/api_export_files;./libs/gpapis/CORE/1.0/exports;./export"/>
-
-
-			<!-- Output formats -->
-            <arg value="-out"/>
-            <arg value="JCA"/>
-            <arg value="CAP"/>
-            <arg value="EXP"/>
-			
-			<!-- Compiled class files directory -->
-            <arg value="-classdir"/>
-            <arg value="${output.dir}/jc305u1"/>
-
-			<!-- Output directory for generated files -->
-            <arg value="-d"/>
-            <arg value="${output.dir}/jc305u1"/>
-			
-			<!-- support int -->
-            <arg value="-i"/>
-			
-			<!-- Applet information -->
-            <arg value="-applet"/>
-            <arg value="${package.aid.ant}"/>
-            <arg value="${package.name}"/>
-            <arg value="${applet.name}"/>
-            <arg value="${applet.aid.ant}"/>
-
-			<!-- Applet version -->
-            <arg value="${version}"/>
-        </exec>
-    </target>
-	
 	<!-- Target: Clean up build artifacts -->
 	<target name="clean" description="Delete build and output directories to ensure a clean build environment">
 		<delete dir="${output.dir}"/>

@@ -9,7 +9,7 @@
 			</fileset>
 		</subant>
 	</target>
-    <target name="convert">
+    <target name="convert" depends="clean">
         <subant target="convert">
             <fileset dir=".">
 			    <!-- Import all build targets for each JCSDK version -->

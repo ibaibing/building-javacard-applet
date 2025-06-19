@@ -21,7 +21,7 @@
         <mkdir dir="${output.dir}"/>
         
         <!-- Directly write the content to PackageInfo.java -->
-        <echo file="${src.dir}/${package.name}/PackageInfo.java">
+        <echo file="${src.dir}/${package.dir}/PackageInfo.java">
 		
 package ${package.name};
 
